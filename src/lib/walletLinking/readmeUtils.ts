@@ -4,6 +4,7 @@ export const LinkedWalletSchema = z.object({
   chain: z.string().min(1).toLowerCase(),
   address: z.string().min(1),
   ensName: z.string().min(1).optional(),
+  snsName: z.string().min(1).optional(),
   signature: z.string().min(1).optional(),
 });
 
@@ -126,6 +127,7 @@ export function generateReadmeWalletSection(wallets: LinkedWallet[]): string {
       chain: wallet.chain.toLowerCase().trim(),
       address: wallet.address.trim(),
       ...(wallet.ensName ? { ensName: wallet.ensName.trim() } : {}),
+      ...(wallet.snsName ? { snsName: wallet.snsName.trim() } : {}),
       ...(wallet.signature ? { signature: wallet.signature.trim() } : {}),
     })),
   };
